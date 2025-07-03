@@ -15,4 +15,4 @@ vncserver -kill :1 1>/dev/null 2>&1
 [ -e /tmp/.X11-unix ] && rm -rf /tmp/.X11-unix
 [ -e /tmp/.X1-lock ] && rm -rf /tmp/.X1-lock
 vncserver -name chrome-novnc -depth 24 -geometry $vnc_geometry :1
-/opt/novnc/utils/launch.sh --vnc localhost:5901
+/opt/novnc/utils/novnc_proxy --vnc localhost:5901

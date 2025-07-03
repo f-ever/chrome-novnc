@@ -1,5 +1,7 @@
-FROM debian:stretch
-MAINTAINER Chrome With noVNC <admin@f-ever.cn>
+FROM debian:bookworm
+LABEL description="Chrome With noVNC" \
+	maintainer="admin@fever.ink" \
+	version="2.0"
 
 # Install Chrome
 RUN \
@@ -13,7 +15,7 @@ RUN \
 
 # Install vnc server and noVNC
 RUN \
-	apt install --no-install-recommends -y tightvncserver xfonts-base git websockify python-pkg-resources net-tools procps && \
+	apt install --no-install-recommends -y tightvncserver xfonts-base git websockify python3 net-tools procps && \
 	git clone https://github.com/novnc/noVNC.git /opt/novnc
 
 # Configuration
@@ -23,10 +25,9 @@ RUN \
 	chmod +x /usr/bin/chrome-novnc.sh
 
 ENV \
-	VNC_PASSWD=password \
 	WIDTH=1280 \
 	HEIGHT=720 \
-	LANGUAGE=zh_CN.UTF8
+	LANGUAGE=zh_CN.UTF-8
 	
 EXPOSE 6080
 
